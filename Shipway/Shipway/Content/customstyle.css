@@ -1,0 +1,87 @@
+﻿textarea {
+    resize: vertical;
+}
+
+ul .notification {
+    width: 500px;
+}
+
+.btn-warning {
+    background-color: #9ed5ba;
+    border-color: #9ed5ba;
+    color: #FFFFFF;
+}
+
+    .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open .dropdown-toggle.btn-warning {
+        background-color: #58C9A0;
+        border-color: #58C9A0;
+        color: #FFFFFF;
+    }
+
+.btn-primary {
+    background-color: #58C9A0;
+    border-color: #58C9A0;
+    color: #FFFFFF;
+}
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+        background-color: #9ed5ba;
+        border-color: #9ed5ba;
+        color: #FFFFFF;
+    }
+
+
+.btn-success {
+    background-color: #58C9A0;
+    border-color: #58C9A0;
+    color: #FFFFFF;
+}
+
+    .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+        background-color: #9ed5ba;
+        border-color: #9ed5ba;
+        color: #FFFFFF;
+    }
+
+.align-search {
+    position: absolute;
+}
+
+.fa-question-circle {
+    color: #999;
+}
+
+.fa-check-square {
+    color: green;
+}
+
+.fa-exclamation-triangle {
+    color: red;
+}
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus, select {
+    border-color: #58C9A0;
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+    outline: 0 none;
+}
+
+.dropdown-menu.extended.logout > li > a:hover i {
+    color: #58C9A0;
+}
+
+.remove-people {
+    position: fixed;
+    top: calc(50% - 50px);
+}
+
+.tagit {
+    height: 60px;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.margin10 {
+    margin-left: 10px;
+}
