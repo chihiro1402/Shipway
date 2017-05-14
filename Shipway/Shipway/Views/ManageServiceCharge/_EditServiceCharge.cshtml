@@ -1,0 +1,72 @@
+﻿@model ShipwayBusiness.Entities.ServiceCharge
+
+<div class="modal-header">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+    <h4 class="modal-title">Sửa biểu phí</h4>
+</div>
+@using (Html.BeginForm("EditServiceCharge", "ManageServiceCharge", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="modal-body">
+
+        @Html.ValidationSummary(true)
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-3 col-sm-3 control-label">Tuyến *</label>
+                <div class="col-lg-9">
+                    @Html.HiddenFor(model=>model.ServiceChargeId)
+                    @Html.DropDownListFor(model => model.RouterId, new SelectList(ViewBag.ListRouter, "RouterId", "RouterName"), new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 col-sm-3 control-label">Loại dịch vụ*</label>
+                <div class="col-lg-9">
+                    @Html.DropDownListFor(model => model.KindServiceId, new SelectList(ViewBag.ListKindService, "KindServiceId", "KindServiceName"), new { @class = "form-control", @required = "required" })
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 col-sm-3 control-label">Thời gian giao hàng*</label>
+                <div class="col-lg-9">
+                    @Html.DropDownListFor(model => model.KindTimeReceivedId, new SelectList(ViewBag.ListKindTimeReceived, "KindTimeReceivedId", "Name"), new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Khối lượng *</label>
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(model => model.Weigh, new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Giá tiền giao nội thành *</label>
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(model => model.CostOderUrban, new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Giá tiền giao ngoại thành*</label>
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(model => model.CostOderSubUrban, new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Khối lượng thêm *</label>
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(model => model.AddWeight, new { @class = "form-control", @required = "required", @type = "number", @step = "0.1"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Số tiền thêm( tương ứng khối lượng thêm) *</label>
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(model => model.AddMoney, new { @class = "form-control", @required = "required", @type = "number", @step = "1000"})
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-default btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+}

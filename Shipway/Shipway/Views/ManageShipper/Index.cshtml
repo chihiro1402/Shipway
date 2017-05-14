@@ -1,0 +1,136 @@
+﻿@model ShipwayBusiness.Entities.Shipper
+@{
+    ViewBag.Title = "Quản lý người giao hàng";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                QUẢN LÝ NGƯỜI GIAO HÀNG
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+
+                <div class="row-fluid">
+                    <button data-toggle="modal" class="btn btn-primary" data-target="#ModalAddShipper">
+                        Thêm người giao hàng
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddShipper" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h4 class="modal-title">Thêm người giao hàng</h4>
+                            </div>
+                            @using (Html.BeginForm("SaveShipper", "ManageShipper", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                <div class="modal-body">
+
+                                    @Html.ValidationSummary(true)
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Tên đăng nhập *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Mật khẩu *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control",@type="password", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Tên *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Email *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @required = "required" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Số điện thoại *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Thuộc đại lý *</label>
+                                            <div class="col-lg-9">
+                                                @Html.DropDownListFor(model=>model.AgencyId, (SelectList)ViewBag.Agency, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button type="submit" class="btn btn-default btn-primary">Lưu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adv-table">
+                    <table class="display table listShipper">
+                        <thead>
+                            <tr>
+                                <th>Tên đăng nhập</th>
+                                <th>Tên người giao hàng</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                                <th>Thuộc đại lý</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ListShipper)
+                            {
+                                <tr>
+                                    <th>@item.Username</th>
+                                    <td>@item.Name</td>
+                                    <td>@item.PhoneNumber</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.AgencyId</td>
+                                    <td>
+                                        <a class="btn btn-primary editmodal" href="#" data-url="@Url.Action("EditShipper", "ManageShipper", new { id=@item.ShipperId})" title="Edit Shipper" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger deletemodal" href="#" data-url="@Url.Action("DeleteShipper", "ManageShipper", new { id=@item.ShipperId})"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="modal_shipper" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content partial-container">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/manageShipper.js"></script>
+}

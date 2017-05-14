@@ -23,6 +23,8 @@ namespace ShipwayBusiness.Repository.UnitOfWork
         private ShipperRepository _shipperRepository;
         private UserRepository _userRepository;
         private WardRepository _wardRepository;
+        private RouterRepository _routerRepository;
+        private HistoryTripRepository _historyTripRepository;
 
         public AgencyRepository AgencyRepository
         {
@@ -84,9 +86,34 @@ namespace ShipwayBusiness.Repository.UnitOfWork
             get { return _wardRepository ?? (_wardRepository = new WardRepository(_context)); }
         }
 
+        public RouterRepository RouterRepository
+        {
+            get { return _routerRepository ?? (_routerRepository = new RouterRepository(_context)); }
+        }
+
+        public HistoryTripRepository HistoryTripRepository
+        {
+            get { return _historyTripRepository ?? (_historyTripRepository = new HistoryTripRepository(_context)); }
+        }
+
+        private bool _disposed;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            _disposed = true;
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

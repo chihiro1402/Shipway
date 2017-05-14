@@ -1,0 +1,55 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="ShipwayMobie.View.Exhibiton.ExhibitionComplete"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid Background="#ccc">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,8" Orientation="Horizontal">
+            <Viewbox Height="54" RenderTransformOrigin="-2.312,0.542" Margin="30 0" VerticalAlignment="Center" Width="130" HorizontalAlignment="Right">
+                <Canvas Width="24" Height="21">
+                    <Path Data="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M19.5,9.5L21.46,12H17V9.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8Z" Fill="#58C9A0" />
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="Shipway" FontSize="40" Foreground="#58C9A0" Width="280" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Background="{StaticResource MySolid}">
+            <TextBlock Style="{StaticResource PhoneTextSmallStyle}"/>
+        </StackPanel>
+        <Grid Grid.Row="3" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" x:Name="exhibitionId" Text="{Binding ExhibitionId}"></TextBlock>
+            <TextBlock Grid.Row="1">Chi tiết điểm dừng cuối</TextBlock>
+            <TextBlock Grid.Row="2" x:Name="receiveAddress" Text="{Binding ReceiverAddress}"></TextBlock>
+            <TextBlock Grid.Row="3" x:Name="receiverNumber" Text="{Binding ReceiverPhoneNumber}"></TextBlock>
+            <TextBlock Grid.Row="4" x:Name="receiverName" Text="{Binding ReceiverName}"></TextBlock>
+            <TextBlock Grid.Row="5" x:Name="note" Text="{Binding Note}"></TextBlock>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

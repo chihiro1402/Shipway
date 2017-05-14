@@ -11,7 +11,7 @@ namespace ShipwayBusiness.Entities.Map
         public KindTimeReceivedMap()
         {
             ToTable("KindTimeReceived");
-            HasKey(p => p.Id);
+            HasKey(p => p.KindTimeReceivedId);
         }
     }
 }

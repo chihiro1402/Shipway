@@ -10,5 +10,6 @@ namespace ShipwayBusiness.Entities
         public string ProvinceId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        public int Region { get; set; }
     }
 }

@@ -1,0 +1,128 @@
+﻿@model ShipwayBusiness.Entities.User
+@{
+    ViewBag.Title = "Quản lý khách hàng";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                QUẢN LÝ KHÁCH HÀNG
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+
+                <div class="row-fluid">
+                    <button data-toggle="modal" class="btn btn-primary" data-target="#ModalAddCustomer">
+                        Thêm khách hàng
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddCustomer" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h4 class="modal-title">Thêm khách hàng</h4>
+                            </div>
+                            @using (Html.BeginForm("SaveCustomer", "SuperAdmin", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                <div class="modal-body">
+
+                                    @Html.ValidationSummary(true)
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Tên đăng nhập *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Mật khẩu *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password", @required = "required" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Tên</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Email *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @required = "required", @type = "email" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Số điện thoại *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button type="submit" class="btn btn-default btn-primary">Lưu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adv-table">
+                    <table class="display table listCustomer">
+                        <thead>
+                            <tr>
+                                <th>Tên đăng nhập</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Tên</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ListCustomer)
+                            {
+                                <tr>
+                                    <td>@item.UserName</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.PhoneNumber</td>
+                                    <td>@item.Name</td>
+                                    <td>
+                                        <a class="btn btn-primary editmodal" href="#" data-url="@Url.Action("EditCustomer", "SuperAdmin", new { id=@item.Id})" title="Edit Account" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger deletemodal" href="#" data-url="@Url.Action("DeleteCustomer", "SuperAdmin", new { id=@item.Id})"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="modal_customer" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content partial-container">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/manageCustomer.js"></script>
+}

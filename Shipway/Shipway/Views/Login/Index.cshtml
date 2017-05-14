@@ -1,4 +1,4 @@
-﻿
+﻿@model ShipwayBusiness.Entities.User
 @{
     ViewBag.Title = "Login";
     Layout = null;
@@ -18,16 +18,16 @@
         <div class="container">
 
             <div class="form-signin">
-                <h2 class="form-signin-heading">Manage and Monitor Shipping</a></h2>
+                <h2 class="form-signin-heading">Manage and Monitor Shipping</h2>
                 <div class="login-wrap">
 
-                    @using (Html.BeginForm("Login", "FrontEnd"))
+                    @using (Html.BeginForm("Login", "Login"))
                     {
                         <div class="user-login-info">
 
-                            @*@Html.TextBoxFor(model => model.account.EmailAddress, new { @class = "form-control", @required = "required", @placeholder = "Email Address", @type = "Email", @id = "txtEmail" })
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @required = "required", @placeholder = "UserName", @type = "text", @id = "txtUserName" })
 
-                                @Html.TextBoxFor(model => model.account.Password, new { @class = "form-control", @required = "required", @placeholder = "Password", @type = "password", @minlength = "6" })*@
+                            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @required = "required", @placeholder = "Password", @type = "password" })
                         </div>
                         if (TempData["Success"] != null)
                         {
@@ -47,27 +47,17 @@
                             </div>
                         </div>
 
-                        @*<label class="checkbox">
-                                <input type="checkbox" value="remember-me"> Remember me
-                                <span class="pull-right">
-                                    <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
-                                </span>
-                            </label>*@
-
                         <button class="btn btn-lg btn-login btn-block" type="submit">Đăng nhập</button>
                         if (ViewBag.Invalid == true)
                         {
-                            <p id="invalid" style="color:red;font-weight:bold;font-size:small;">@TempData["ErrorMsg"]</p>
+                            <p id="invalid" style="color:red;font-weight:bold;font-size:small;">@TempData["ErrorMessage"]</p>
                         }
 
                     }
                     <div class="registration">
-                        Don't have an account yet?
-                        @*<a class="" href="@Url.Action("Index", "SignUp", new { Plan="Free"})">
-                                Create an account
-                            </a>*@
-                        <a class="" href="http://safetymonitor.nz/#plans">
-                            Create an account
+                        Bạn chưa có tài khoản?
+                        <a class="" href="@Url.Action("Index", "SignUp")">
+                            Tạo tài khoản mới
                         </a>
                     </div>
                 </div>

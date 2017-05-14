@@ -47,6 +47,14 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -138,10 +146,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datepicker\css\datepicker-custom.css" />
+    <Content Include="Content\bootstrap-datepicker\css\datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="Content\bootstrap-datepicker\js\_bootstrap-datepicker.js" />
+    <Content Include="Content\bootstrap-slider-master\bootstrap-slider.js" />
+    <Content Include="Content\bootstrap-slider-master\bootstrap-slider.min.js" />
+    <Content Include="Content\bootstrap-slider-master\css\bootstrap-slider.css" />
+    <Content Include="Content\bootstrap-slider-master\css\bootstrap-slider.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bs3\css\bootstrap-theme.css" />
+    <Content Include="Content\bs3\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bs3\css\bootstrap.css" />
+    <Content Include="Content\bs3\css\bootstrap.min.css" />
+    <Content Include="Content\bs3\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bs3\js\bootstrap.js" />
+    <Content Include="Content\bs3\js\bootstrap.min.js" />
+    <Content Include="Content\bs3\js\npm.js" />
     <Content Include="Content\customstyle.css" />
+    <Content Include="Content\data-tables\DT_bootstrap.css" />
+    <Content Include="Content\data-tables\DT_bootstrap.js" />
+    <Content Include="Content\data-tables\images\sort_asc.png" />
+    <Content Include="Content\data-tables\images\sort_both.png" />
+    <Content Include="Content\data-tables\images\sort_desc.png" />
+    <Content Include="Content\data-tables\jquery.dataTables.js" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\icon.png" />
+    <Content Include="Content\progress-tracker.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -150,8 +184,21 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\AdminExhibition.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\bs3\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bs3\css\bootstrap.css.map" />
+    <Content Include="Content\bs3\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bs3\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bs3\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bs3\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-datepicker\less\datepicker.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -160,7 +207,17 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lumpExhibition.js" />
+    <Content Include="Scripts\manageagency.js" />
+    <Content Include="Scripts\manageCustomer.js" />
+    <Content Include="Scripts\manageexhibition.js" />
+    <Content Include="Scripts\manageServiceCharge.js" />
+    <Content Include="Scripts\manageShipper.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\morris-charts.js" />
+    <Content Include="Scripts\report.js" />
+    <Content Include="Scripts\superadmin.js" />
+    <Content Include="Scripts\underscore-min.js" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -172,6 +229,30 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_leftNav.cshtml" />
+    <Content Include="Views\SuperAdmin\Index.cshtml" />
+    <Content Include="Views\SuperAdmin\_editAccount.cshtml" />
+    <Content Include="Views\SuperAdmin\_DeleteAccount.cshtml" />
+    <Content Include="Views\ManageAgency\Index.cshtml" />
+    <Content Include="Views\ManageAgency\_DeleteAgency.cshtml" />
+    <Content Include="Views\ManageAgency\_EditAgency.cshtml" />
+    <Content Include="Views\ManageShipper\Index.cshtml" />
+    <Content Include="Views\ManageShipper\_EditShipper.cshtml" />
+    <Content Include="Views\ManageShipper\_DeleteShipper.cshtml" />
+    <Content Include="Views\SuperAdmin\ManageCustomer.cshtml" />
+    <Content Include="Views\SuperAdmin\_EditCustomer.cshtml" />
+    <Content Include="Views\SuperAdmin\_DeleteCustomer.cshtml" />
+    <Content Include="Views\ExhibitionCustomer\Index.cshtml" />
+    <Content Include="Views\ManageServiceCharge\Index.cshtml" />
+    <Content Include="Views\ManageServiceCharge\_EditServiceCharge.cshtml" />
+    <Content Include="Views\ManageServiceCharge\_DeleteServiceCharge.cshtml" />
+    <Content Include="Views\ExhibitionCustomer\_ViewDetail.cshtml" />
+    <Content Include="Views\ExhibitionCustomer\EditExhibition.cshtml" />
+    <Content Include="Views\ManageExhibition\Index.cshtml" />
+    <Content Include="Views\ManageExhibition\EditExhibiton.cshtml" />
+    <Content Include="Views\LumpExhibition\Index.cshtml" />
+    <Content Include="Views\Reporting\Index.cshtml" />
+    <Content Include="Views\SignUp\Index.cshtml" />
+    <Content Include="Views\PersonalAccount\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -180,14 +261,27 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Authorize\ShipwayAuthorize.cs" />
+    <Compile Include="Controllers\ExhibitionCustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LumpExhibitionController.cs" />
+    <Compile Include="Controllers\ManageAgencyController.cs" />
+    <Compile Include="Controllers\ManageExhibitionController.cs" />
+    <Compile Include="Controllers\ManageServiceChargeController.cs" />
+    <Compile Include="Controllers\ManageShipperController.cs" />
+    <Compile Include="Controllers\PersonalAccountController.cs" />
+    <Compile Include="Controllers\ReportingController.cs" />
+    <Compile Include="Controllers\SignUpController.cs" />
+    <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,6 +290,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShipwayBusiness\ShipwayBusiness.csproj">
+      <Project>{a4eeb7d7-64de-44c7-92f4-87cf49d4fb2c}</Project>
+      <Name>ShipwayBusiness</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

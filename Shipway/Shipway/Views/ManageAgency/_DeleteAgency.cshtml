@@ -1,0 +1,28 @@
+﻿@model ShipwayBusiness.Entities.Agency
+
+<div class="modal-header">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+    <h4 class="modal-title">Xóa đại lý</h4>
+</div>
+@using (Html.BeginForm("DeleteAgency", "ManageAgency", FormMethod.Post))
+{
+    <div class="modal-body">
+        <div class="modal-body">
+            <div class="form-horizontal">
+                @Html.HiddenFor(model => model.AgencyId)
+                <div class="form-group">
+                    Bạn chắc chắn muốn xóa đại lý @Model.AgencyName?
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-primary">Yes</button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>
+            </div>
+        </div>
+    </div>
+}
+

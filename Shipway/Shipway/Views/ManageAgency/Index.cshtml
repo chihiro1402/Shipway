@@ -1,0 +1,123 @@
+﻿
+@model ShipwayBusiness.Entities.Agency
+@{
+    ViewBag.Title = "Quản lý đại lý";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                QUẢN LÝ ĐẠI LÝ
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+
+                <div class="row-fluid">
+                    <button data-toggle="modal" class="btn btn-primary" data-target="#ModalAddAgency">
+                        Thêm đại lý
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddAgency" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h4 class="modal-title">Thêm đại lý</h4>
+                            </div>
+                            @using (Html.BeginForm("SaveAgency", "ManageAgency", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                <div class="modal-body">
+
+                                    @Html.ValidationSummary(true)
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Số điện thoại *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Địa chỉ *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @required = "required" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Tên đại lý</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.AgencyName, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Thời gian hoạt động</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.ActivityTime, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button type="submit" class="btn btn-default btn-primary">Lưu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adv-table">
+                    <table class="display table listAgency">
+                        <thead>
+                            <tr>
+                                <th>Tên đại lý</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Thời gian hoạt động</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ListAgency)
+                            {
+                                <tr>
+                                    <td>@item.AgencyName</td>
+                                    <td>@item.PhoneNumber</td>
+                                    <td>@item.Address</td>
+                                    <td>@item.ActivityTime</td>
+                                    <td>
+                                        <a class="btn btn-primary editmodal" href="#" data-url="@Url.Action("EditAgency", "ManageAgency", new { id=@item.AgencyId})" title="Edit Agency" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger deletemodal" href="#" data-url="@Url.Action("DeleteAgency", "ManageAgency", new { id=@item.AgencyId})"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="modal_agency" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content partial-container">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/manageagency.js"></script>
+}

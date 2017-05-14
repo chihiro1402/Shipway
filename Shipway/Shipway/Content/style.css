@@ -397,6 +397,7 @@ ul.sidebar-menu li a {
 .brand {
     /*background:#58C9A0;*/
     /*background: #7D7D7D;*/
+    margin: auto;
     background: #58C9A0;
     float: left;
     width: 240px;
@@ -406,9 +407,9 @@ ul.sidebar-menu li a {
 
 a.logo {
     font-size: 21px;
-    color: #2e2e2e;
+    color: #fff;
     float: left;
-    margin: 20px 0 0 25px;
+    margin: auto 43px;
     text-transform: uppercase;
 }
 
@@ -546,8 +547,8 @@ ul.top-menu {
     color: white;
 }
 
-.dropdown-menu.extended.tasks-bar li:last-child a:hover{
-    background-color:#ccc;
+.dropdown-menu.extended.tasks-bar li:last-child a:hover {
+    background-color: #ccc;
 }
 
 .dropdown-menu.tasks-bar .task-info .desc {
@@ -3393,13 +3394,13 @@ ul.amounts li {
     color: #ffffff !important;
 }*/
 
-div.fc-event-skin{
+div.fc-event-skin {
     background-color: #58c9a0 !important;
     border-color: #58c9a0 !important;
     color: #ffffff !important;
 }
 
-div.beforetoday{
+div.beforetoday {
     background-color: #99cce3 !important;
     border-color: #99cce3 !important;
     color: #fff !important;

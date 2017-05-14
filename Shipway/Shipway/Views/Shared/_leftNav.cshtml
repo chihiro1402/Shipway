@@ -1,5 +1,104 @@
 ﻿
 @{
-    Layout = null;
+    var currentUser = (ShipwayBusiness.Entities.User)HttpContext.Current.Session["CurrentUser"];
 }
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+            <ul class="sidebar-menu" id="nav-accordion">
+                @if (currentUser.IsSuperAdmin)
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "SuperAdmin")" id="ManageUser">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Quản lý tài khoản</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "ManageAgency")" id="ManageAgency">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Quản lý đại lý</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ManageCustomer", "SuperAdmin")" id="ManageUser">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <span>Quản lý khách hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "ManageExhibition")" id="ManageExhibition">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span>Quản lý đơn hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "ManageShipper")" id="ManageShipper">
+                            <i class="fa fa-truck" aria-hidden="true"></i>
+                            <span>Quản lý người giao hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "ManageServiceCharge")" id="ManageServiceCharge">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <span>Quản lý biểu phí</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Reporting")" id="Reporting">
+                            <i class="fa fa-file-text" aria-hidden="true"></i>
+                            <span>Báo cáo thống kê</span>
+                        </a>
+                    </li>
+                }
+                else if (currentUser.IsAdmin)
+                {
+                    <li>
+                        <a href="@Url.Action("ManageCustomer", "ManageUser")" id="ManageUser">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <span>Quản lý khách hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "ManageExhibition")" id="ManageExhibition">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span>Quản lý đơn hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "ManageShipper")" id="ManageShipper">
+                            <i class="fa fa-truck" aria-hidden="true"></i>
+                            <span>Quản lý người giao hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "LumpExhibition")" id="LumpExhibition">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                            <span>Gộp đơn hàng tối ưu</span>
+                        </a>
+                    </li>
+                }
+                else if (currentUser.IsCustomer)
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "ManageUser")" id="ManageUser">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Tài khoản cá nhân</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "ExhibitionCustomer")" id="ManageUser">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span>Quản lý đơn hàng</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <!-- sidebar menu end-->
+    </div>
+</aside>
 

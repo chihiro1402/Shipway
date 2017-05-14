@@ -14,7 +14,7 @@ namespace ShipwayBusiness.DatabaseContext
         {
             Database.SetInitializer<ShipwayContext>(null);
         }
-        public ShipwayContext(): base("Name= ShipwayContext")
+        public ShipwayContext(): base("Name= ShipwayConnectionString")
         {
 
         }
@@ -30,6 +30,8 @@ namespace ShipwayBusiness.DatabaseContext
         public DbSet<Shipper> Shipper { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Ward> Ward { get; set; }
+        public DbSet<Router> Router { get; set; }
+        public DbSet<HistoryTrip> HistoryTrips { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,13 +39,15 @@ namespace ShipwayBusiness.DatabaseContext
             modelBuilder.Configurations.Add(new ExhibitionMap());
             modelBuilder.Configurations.Add(new ExhibitionStatusMap());
             modelBuilder.Configurations.Add(new KindServiceMap());
-            modelBuilder.Configurations.Add(new KindServiceMap());
+            modelBuilder.Configurations.Add(new KindTimeReceivedMap());
             modelBuilder.Configurations.Add(new NoteRequiredMap());
             modelBuilder.Configurations.Add(new ProvinceMap());
             modelBuilder.Configurations.Add(new ServiceChargeMap());
             modelBuilder.Configurations.Add(new ShipperMap());
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new WardMap());
+            modelBuilder.Configurations.Add(new RouterMap());
+            modelBuilder.Configurations.Add(new HistoryTripMap());
         }
     }
 }

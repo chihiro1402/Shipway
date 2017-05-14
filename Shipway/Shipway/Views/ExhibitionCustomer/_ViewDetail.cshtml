@@ -1,0 +1,73 @@
+﻿@model ShipwayBusiness.Entities.Exhibition
+
+<div class="modal-body">
+    <div class="row" style="margin-bottom:30px">
+        <div class="col-lg-offset-1 col-lg-2">
+            @Model.ExhibitionId
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 ">
+            <p class="text-center">
+                <i class="ic-tracking ic-xe "></i>
+            </p>
+            <table class="table">
+                <tr>
+                    <td><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+                    <td>@ViewBag.KindService</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-inbox" aria-hidden="true"></i></td>
+                    <td>@Model.PackageWeigh</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-archive" aria-hidden="true"></i></td>
+                    <td>@Model.PackageLong cm x @Model.PackageWide cm x @Model.PackageHigh cm</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-usd" aria-hidden="true"></i></td>
+                    <td>@Model.Cost</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-5 ">
+            <p class="text-center">
+                <i class="ic-tracking ic-co"></i>
+            </p>
+            <table class="table">
+                <tr>
+                    <td><i class="fa fa-user" aria-hidden="true"></i></td>
+                    <td>@Model.ReceiverName</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-map-marker" aria-hidden="true"></i></td>
+                    <td>@Model.ReceiverAddress</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-phone" aria-hidden="true"></i></td>
+                    <td>@Model.ReceiverPhoneNumber</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <ul class="col-lg-12 progress-tracker progress-tracker--center">
+            @foreach (var item in ViewBag.ListHistory)
+            {
+                <li class="progress-step is-complete">
+                    <span class="progress-marker"></span>
+                    <span class="progress-text">
+                        <h4 class="progress-title">@item.ExhibitionStatus</h4>
+                        @item.HistoryTrip.DateTrip
+                    </span>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+

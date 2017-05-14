@@ -1,4 +1,4 @@
-﻿using ShipwayBusiness.Entities.Map;
+﻿using ShipwayBusiness.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

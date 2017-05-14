@@ -10,7 +10,7 @@ namespace ShipwayBusiness.Entities.Map
     {
         public UserMap()
         {
-            ToTable("User");
+            ToTable("Users");
             HasKey(p => p.Id);
         }
     }

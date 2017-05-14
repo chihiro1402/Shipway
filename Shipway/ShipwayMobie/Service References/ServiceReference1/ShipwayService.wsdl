@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ShipperLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShipperLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ShipperLoginResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="shipper" type="tns:Shipper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Shipper">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ShipperId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AgencyId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetListExhibitionAssignedForShipper">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="shipperId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListExhibitionAssignedForShipperResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListExhibitionAssignedForShipperResult" type="tns:ArrayOfExhibition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfExhibition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Exhibition" nillable="true" type="tns:Exhibition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Exhibition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExhibitionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SenderName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SenderPhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SenderAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverPhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PackageWeigh" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PackageLong" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PackageWide" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PackageHigh" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NoteRequiredId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedUserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModifiedDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LasrModifiedUserId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="KindServiceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cost" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AssignShipperId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExhibitionStatusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSendToAgency" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DayReceive" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocationSender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocationReceive" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDetailexhibition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDetailexhibitionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDetailexhibitionResult" type="tns:Exhibition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStatusOfExhibition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exhibitionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="exhibitionStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStatusOfExhibitionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateStatusOfExhibitionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllExhibitionStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllExhibitionStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllExhibitionStatusResult" type="tns:ArrayOfExhibitionStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfExhibitionStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExhibitionStatus" nillable="true" type="tns:ExhibitionStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExhibitionStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ExhibitionStatusId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetExhibitionStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExhibitionStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExhibitionStatusResult" type="tns:ExhibitionStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewExhibition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="shipperId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewExhibitionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewExhibitionResult" type="tns:ArrayOfExhibition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompleteExhibition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="shipperId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompleteExhibitionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompleteExhibitionResult" type="tns:ArrayOfExhibition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFailExhibition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="shipperId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFailExhibitionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFailExhibitionResult" type="tns:ArrayOfExhibition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWaitSendExhibition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="shipperId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWaitSendExhibitionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWaitSendExhibitionResult" type="tns:ArrayOfExhibition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ShipperLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:ShipperLogin" />
+  </wsdl:message>
+  <wsdl:message name="ShipperLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:ShipperLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListExhibitionAssignedForShipperSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListExhibitionAssignedForShipper" />
+  </wsdl:message>
+  <wsdl:message name="GetListExhibitionAssignedForShipperSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListExhibitionAssignedForShipperResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDetailexhibitionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDetailexhibition" />
+  </wsdl:message>
+  <wsdl:message name="GetDetailexhibitionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDetailexhibitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStatusOfExhibitionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateStatusOfExhibition" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStatusOfExhibitionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateStatusOfExhibitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllExhibitionStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllExhibitionStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetAllExhibitionStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllExhibitionStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExhibitionStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExhibitionStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetExhibitionStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExhibitionStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNewExhibitionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewExhibition" />
+  </wsdl:message>
+  <wsdl:message name="GetNewExhibitionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewExhibitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompleteExhibitionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompleteExhibition" />
+  </wsdl:message>
+  <wsdl:message name="GetCompleteExhibitionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompleteExhibitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFailExhibitionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFailExhibition" />
+  </wsdl:message>
+  <wsdl:message name="GetFailExhibitionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFailExhibitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWaitSendExhibitionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWaitSendExhibition" />
+  </wsdl:message>
+  <wsdl:message name="GetWaitSendExhibitionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWaitSendExhibitionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ShipwayServiceSoap">
+    <wsdl:operation name="ShipperLogin">
+      <wsdl:input message="tns:ShipperLoginSoapIn" />
+      <wsdl:output message="tns:ShipperLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListExhibitionAssignedForShipper">
+      <wsdl:input message="tns:GetListExhibitionAssignedForShipperSoapIn" />
+      <wsdl:output message="tns:GetListExhibitionAssignedForShipperSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailexhibition">
+      <wsdl:input message="tns:GetDetailexhibitionSoapIn" />
+      <wsdl:output message="tns:GetDetailexhibitionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusOfExhibition">
+      <wsdl:input message="tns:UpdateStatusOfExhibitionSoapIn" />
+      <wsdl:output message="tns:UpdateStatusOfExhibitionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExhibitionStatus">
+      <wsdl:input message="tns:GetAllExhibitionStatusSoapIn" />
+      <wsdl:output message="tns:GetAllExhibitionStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExhibitionStatus">
+      <wsdl:input message="tns:GetExhibitionStatusSoapIn" />
+      <wsdl:output message="tns:GetExhibitionStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewExhibition">
+      <wsdl:input message="tns:GetNewExhibitionSoapIn" />
+      <wsdl:output message="tns:GetNewExhibitionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompleteExhibition">
+      <wsdl:input message="tns:GetCompleteExhibitionSoapIn" />
+      <wsdl:output message="tns:GetCompleteExhibitionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFailExhibition">
+      <wsdl:input message="tns:GetFailExhibitionSoapIn" />
+      <wsdl:output message="tns:GetFailExhibitionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWaitSendExhibition">
+      <wsdl:input message="tns:GetWaitSendExhibitionSoapIn" />
+      <wsdl:output message="tns:GetWaitSendExhibitionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ShipwayServiceSoap" type="tns:ShipwayServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ShipperLogin">
+      <soap:operation soapAction="http://tempuri.org/ShipperLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListExhibitionAssignedForShipper">
+      <soap:operation soapAction="http://tempuri.org/GetListExhibitionAssignedForShipper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailexhibition">
+      <soap:operation soapAction="http://tempuri.org/GetDetailexhibition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusOfExhibition">
+      <soap:operation soapAction="http://tempuri.org/UpdateStatusOfExhibition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExhibitionStatus">
+      <soap:operation soapAction="http://tempuri.org/GetAllExhibitionStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExhibitionStatus">
+      <soap:operation soapAction="http://tempuri.org/GetExhibitionStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewExhibition">
+      <soap:operation soapAction="http://tempuri.org/GetNewExhibition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompleteExhibition">
+      <soap:operation soapAction="http://tempuri.org/GetCompleteExhibition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFailExhibition">
+      <soap:operation soapAction="http://tempuri.org/GetFailExhibition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWaitSendExhibition">
+      <soap:operation soapAction="http://tempuri.org/GetWaitSendExhibition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ShipwayServiceSoap12" type="tns:ShipwayServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ShipperLogin">
+      <soap12:operation soapAction="http://tempuri.org/ShipperLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListExhibitionAssignedForShipper">
+      <soap12:operation soapAction="http://tempuri.org/GetListExhibitionAssignedForShipper" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailexhibition">
+      <soap12:operation soapAction="http://tempuri.org/GetDetailexhibition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusOfExhibition">
+      <soap12:operation soapAction="http://tempuri.org/UpdateStatusOfExhibition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExhibitionStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetAllExhibitionStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExhibitionStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetExhibitionStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewExhibition">
+      <soap12:operation soapAction="http://tempuri.org/GetNewExhibition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompleteExhibition">
+      <soap12:operation soapAction="http://tempuri.org/GetCompleteExhibition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFailExhibition">
+      <soap12:operation soapAction="http://tempuri.org/GetFailExhibition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWaitSendExhibition">
+      <soap12:operation soapAction="http://tempuri.org/GetWaitSendExhibition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShipwayService">
+    <wsdl:port name="ShipwayServiceSoap" binding="tns:ShipwayServiceSoap">
+      <soap:address location="http://192.168.1.114/MyWebservice/ShipwayService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ShipwayServiceSoap12" binding="tns:ShipwayServiceSoap12">
+      <soap12:address location="http://192.168.1.114/MyWebservice/ShipwayService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

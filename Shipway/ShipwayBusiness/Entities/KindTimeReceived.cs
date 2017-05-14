@@ -7,7 +7,8 @@ namespace ShipwayBusiness.Entities
 {
     public class KindTimeReceived
     {
-        public int Id { get; set; }
+        public int KindTimeReceivedId { get; set; }
         public string Name { get; set; }
+        public int NumberOfDay { get; set; }
     }
 }

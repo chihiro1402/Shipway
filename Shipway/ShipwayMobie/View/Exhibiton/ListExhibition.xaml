@@ -1,0 +1,215 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="ShipwayMobie.View.Exhibiton.ListExhibition"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="#ccc">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,8" Orientation="Horizontal">
+            <Viewbox Height="54" RenderTransformOrigin="-2.312,0.542" Margin="30 0" VerticalAlignment="Center" Width="130" HorizontalAlignment="Right">
+                <Canvas Width="24" Height="21">
+                    <Path Data="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M19.5,9.5L21.46,12H17V9.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8Z" Fill="#58C9A0" />
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="Shipway" FontSize="40" Foreground="#58C9A0" Width="280" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Background="{StaticResource MySolid}">
+                <TextBlock Style="{StaticResource PhoneTextSmallStyle}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBox x:Name="txtSearch" Width="300" ></TextBox>
+                <Button x:Name="btnSearch" Click="btnSearch_Click" Background="#fff" Foreground="#aaa">Search</Button>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <phone:Pivot x:Name="pivot" SelectionChanged="pivot_SelectionChanged">
+                    <phone:Pivot.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="35" Foreground="Yellow"/>
+                        </DataTemplate>
+                    </phone:Pivot.HeaderTemplate>
+                    
+                    <!--pivot one-->
+                    <phone:PivotItem Header="Đơn hàng mới tạo">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="total1" Grid.Row="0">Tổng số đơn hàng: </TextBlock>
+                            <ScrollViewer Grid.Row="1">
+                                <ListBox x:Name="newexhibition" ItemsSource="{Binding}" SelectionChanged="newexhibition_SelectionChanged">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="0,1,0,1" BorderBrush="Yellow" Width="480" Margin="5">
+                                                <Grid Height="160" Background="#b6789b">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="320"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Width="140" Height="140" Source="/Assets/itemEx.jpg"/>
+                                                    <TextBlock Text="{Binding ExhibitionId}" FontSize="20" Grid.Row="0" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding DayReceive}" FontSize="18" Grid.Row="1" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding SenderAddress}" FontSize="18" Grid.Row="2" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding ReceiverAddress}" FontSize="18" Grid.Row="3" Grid.Column="1"></TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </ScrollViewer>
+                        </Grid>
+                    </phone:PivotItem>
+
+                    <!--pivot two-->
+                    <phone:PivotItem Header="Đơn hàng đã nhận">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="total4" Grid.Row="0">Tổng số đơn hàng:</TextBlock>
+                            <ScrollViewer Grid.Row="1">
+                                <ListBox x:Name="waitsending" ItemsSource="{Binding}" SelectionChanged="waitsending_SelectionChanged">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="0,1,0,1" BorderBrush="Yellow" Width="480" Margin="5">
+                                                <Grid Height="160" Background="#b6789b">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="320"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Width="140" Height="140" Source="/Assets/itemEx.jpg"/>
+                                                    <TextBlock Text="{Binding ExhibitionId}" FontSize="20" Grid.Row="0" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding DayReceive}" FontSize="18" Grid.Row="1" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding SenderAddress}" FontSize="18" Grid.Row="2" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding ReceiverAddress}" FontSize="18" Grid.Row="3" Grid.Column="1"></TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </ScrollViewer>
+                        </Grid>
+                    </phone:PivotItem>
+
+                    <!--pivot two-->
+                    <phone:PivotItem Header="Đơn hàng đã giao">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="total2" Grid.Row="0">Tổng số đơn hàng:</TextBlock>
+                            <ScrollViewer Grid.Row="1">
+                                <ListBox x:Name="completeExhibiton" ItemsSource="{Binding ListExhibiton}" SelectionChanged="completeExhibiton_SelectionChanged">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="0,1,0,1" BorderBrush="Yellow" Width="480" Margin="5">
+                                                <Grid Background="#b6789b">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="320"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Width="140" Height="140" Source="/Assets/itemEx.jpg"/>
+                                                    <TextBlock Text="{Binding ExhibitionId}" FontSize="20" Grid.Row="0" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding DayReceive}" FontSize="18" Grid.Row="1" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding SenderAddress}" FontSize="18" Grid.Row="2" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding ReceiverAddress}" FontSize="18" Grid.Row="3" Grid.Column="1"></TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </ScrollViewer>
+                        </Grid>
+                    </phone:PivotItem>
+                    
+                    <!--pivot three-->
+                    <phone:PivotItem Header="Đơn hàng thất bại">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="total3" Grid.Row="0">Tổng số đơn hàng:</TextBlock>
+                            <ScrollViewer Grid.Row="1">
+                                <ListBox x:Name="failExhibition" ItemsSource="{Binding ListExhibiton}" SelectionChanged="failExhibition_SelectionChanged">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="0,1,0,1" BorderBrush="Yellow" Width="480" Margin="5">
+                                                <Grid Background="#b6789b">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="320"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Width="140" Height="140" Source="/Assets/itemEx.jpg"/>
+                                                    <TextBlock Text="{Binding ExhibitionId}" FontSize="20" Grid.Row="0" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding DayReceive}" FontSize="18" Grid.Row="1" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding SenderAddress}" FontSize="18" Grid.Row="2" Grid.Column="1"></TextBlock>
+                                                    <TextBlock Text="{Binding ReceiverAddress}" FontSize="18" Grid.Row="3" Grid.Column="1"></TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </ScrollViewer>
+                        </Grid>
+                    </phone:PivotItem>
+                </phone:Pivot>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,314 @@
+﻿@model ShipwayBusiness.Entities.Exhibition
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+
+                <h4>
+                    QUẢN LÝ ĐƠN HÀNG
+                    <a href="#" class="popover-help" data-original-title="Equipment Report" data-content="">
+                        <i class="fa fa-question-circle"></i>
+                    </a>
+                </h4>
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+
+                @using (Html.BeginForm("SearchExhibition", "ManageExhibition"))
+                {
+                    <div class="col-md-12" style="text-align:center;">
+                        <div class="col-md-3">
+                            <div class="col-lg-8">
+                                @Html.DropDownListFor(model => model.ExhibitionStatusId, new SelectList(ViewBag.ExhibitionStatus, "ExhibitionStatusId", "Name"), "Tất cả trạng thái", new { @class = "form-control m-bot15 ", style = "width: 300px;" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success"> Xem đơn hàng </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                QUẢN LÝ ĐƠN HÀNG
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+
+                <div class="row-fluid">
+                    <button data-toggle="modal" class="btn btn-primary" data-target="#ModalAddExhibition">
+                        Thêm đơn hàng
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddExhibition" class="modal fade">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h4 class="modal-title">Thêm đơn hàng cá nhân</h4>
+                            </div>
+                            @using (Html.BeginForm("SaveExhibiton", "ExhibitionCustomer", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                <div class="modal-body">
+
+                                    @Html.ValidationSummary(true)
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Tên người gửi *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.SenderName, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Số điện thoại người gửi *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.SenderPhoneNumber, new { @class = "form-control", @required = "required" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-sm-3 control-label">Địa chỉ người gửi</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.SenderAddress, new { @class = "form-control", @placeholder = "Nhập địa chỉ người gửi" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Tên người nhận *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.ReceiverName, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Số điện thoại người nhận *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.ReceiverPhoneNumber, new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Địa chỉ người nhận *</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextBoxFor(model => model.ReceiverAddress, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Khối lượng gói hàng *</label>
+                                            <div class="col-lg-2">
+                                                @Html.TextBoxFor(model => model.PackageWeigh, new { @class = "form-control", @required = "required", @type = "number", @step = "0.1", @value = 0.5 })
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <span style="font-style:italic">kg</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Chiều dài gói hàng *</label>
+                                            <div class="col-lg-2">
+                                                @Html.TextBoxFor(model => model.PackageLong, new { @class = "form-control", @required = "required", @type = "number", @step = "1", @value = 10 })
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <span style="font-style:italic">cm</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Chiều rộng gói hàng *</label>
+                                            <div class="col-lg-2">
+                                                @Html.TextBoxFor(model => model.PackageWide, new { @class = "form-control", @required = "required", @type = "number", @step = "1", @value = 10 })
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <span style="font-style:italic">cm</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Chiều cao gói hàng *</label>
+                                            <div class="col-lg-2">
+                                                @Html.TextBoxFor(model => model.PackageHigh, new { @class = "form-control", @required = "required", @type = "number", @step = "1", @value = 10 })
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <span style="font-style:italic">cm</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Ghi chú bắt buộc*</label>
+                                            <div class="col-lg-9">
+                                                @Html.DropDownListFor(model => model.NoteRequiredId, new SelectList(ViewBag.ListNoteRequired, "NoteRequiredId", "Content"), new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Ghi chú thêm</label>
+                                            <div class="col-lg-9">
+                                                @Html.TextAreaFor(model => model.Note, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Loại chuyển phát*</label>
+                                            <div class="col-lg-9">
+                                                @Html.DropDownListFor(model => model.KindServiceId, new SelectList(ViewBag.ListKindService, "KindServiceId", "KindServiceName"), new { @class = "form-control", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Gửi hàng tại điểm giao dịch *</label>
+                                            <div>
+                                                @Html.CheckBoxFor(model => model.IsSendToAgency, new { @required = "required" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group">
+                                        <label for="txtFirstName" class="col-lg-3 col-sm-3 control-label">Chi phí vận chuyển</label>
+                                        <div class="col-lg-1 totalmoney">
+
+                                        </div>
+                                        @Html.HiddenFor(model => model.Cost)
+                                        @Html.HiddenFor(model => model.DayReceive)
+                                        @Html.HiddenFor(model => model.LocationReceive)
+                                        @Html.HiddenFor(model => model.LocationSender)
+                                        <div class="col-lg-4">
+                                            <span id="dayReceive"></span>
+                                        </div>
+                                    </div>
+                                    <div style="display:none">
+                                        <input class="field" id="stateSender" />
+                                        <input class="field" id="latlngSender" />
+                                        <input class="field" id="stateReceive" />
+                                        <input class="field" id="latlngReceive" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button type="submit" class="btn btn-default btn-primary">Lưu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adv-table">
+                    <table class="display table listExhibition">
+                        <thead>
+                            <tr>
+                                <th>Mã đơn hàng</th>
+                                <th>Người gửi</th>
+                                <th>SĐT người gửi</th>
+                                <th>Người nhận</th>
+                                <th>SĐT người nhận</th>
+                                <th>Địa chỉ nhận</th>
+                                <th>Phí vận chuyển</th>
+                                <th>Ngày giao dự kiến</th>
+                                <th>Trạng thái</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ListExhibition)
+                            {
+                                <tr>
+                                    <th>@item.Exhibition.ExhibitionId</th>
+                                    <td>@item.Exhibition.SenderName</td>
+                                    <td>@item.Exhibition.SenderPhoneNumber</td>
+                                    <td>@item.Exhibition.ReceiverName</td>
+                                    <td>@item.Exhibition.ReceiverPhoneNumber</td>
+                                    <td>@item.Exhibition.ReceiverAddress</td>
+                                    <td>@item.Exhibition.Cost</td>
+                                    <td>@item.Exhibition.DayReceive</td>
+                                    <td>@item.ExhibitonStatus</td>
+                                    <td>
+                                        <a class="btn btn-primary editmodal" href="#" data-url="@Url.Action("EditExhibition", "ManageExhibition", new { id=@item.Exhibition.ExhibitionId })" title="Edit Shipper" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger deletemodal" href="#" data-url="@Url.Action("DeleteExhibition", "ManageExhibition", new { id=@item.Exhibition.ExhibitionId })"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="modal_exhibition" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content partial-container">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+<script>
+        var placeSearch, senderAddress, receiverAddress;
+        var componentForm = {
+            administrative_area_level_1: 'short_name',
+        };
+
+        function initAutocomplete() {
+            // Create the autocomplete object, restricting the search to geographical
+            // location types.
+            senderAddress = new google.maps.places.Autocomplete(
+              (document.getElementById('SenderAddress')),
+              { types: ['geocode'] });
+            senderAddress.addListener('place_changed', fillInAddress);
+
+            receiverAddress = new google.maps.places.Autocomplete(
+              (document.getElementById('ReceiverAddress')),
+              { types: ['geocode'] });
+            receiverAddress.addListener('place_changed', fillInAddressReceive);
+        }
+
+        function fillInAddress() {
+            // Get the place details from the autocomplete object.
+            var place = senderAddress.getPlace();
+            var locationsender = place.geometry.location.lat() + ';' + place.geometry.location.lng();
+            $("#LocationSender").val(locationsender.toString());
+            // Get each component of the address from the place details
+            // and fill the corresponding field on the form.
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    document.getElementById("stateSender").value = val;
+                }
+            }
+        }
+
+        function fillInAddressReceive() {
+            // Get the place details from the autocomplete object.
+            var place = receiverAddress.getPlace();
+            var locationreceive = place.geometry.location.lat() + ';' + place.geometry.location.lng();
+            $("#LocationReceive").val(locationreceive.toString());
+            // Get each component of the address from the place details
+            // and fill the corresponding field on the form.
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    document.getElementById("stateReceive").value = val;
+                }
+            }
+        }
+</script>
+
+    <script src="~/Scripts/manageexhibition.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiOeoNsJQUAqeC3-GU3Q237Tt1jLwyGDU&libraries=places&callback=initAutocomplete"
+        async defer></script>
+}
